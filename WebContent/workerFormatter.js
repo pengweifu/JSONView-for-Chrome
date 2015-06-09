@@ -71,12 +71,21 @@ function jsonToHTML(json, fnName) {
 	var output = '';
 	if (fnName)
 		output += '<div class="callback-function">' + fnName + '(</div>';
+	output += '<div class="total">Total:' + getJsonLength(json) + '</div>';
 	output += '<div id="json">';
 	output += valueToHTML(json);
 	output += '</div>';
 	if (fnName)
 		output += '<div class="callback-function">)</div>';
 	return output;
+}
+
+function getJsonLength(jsonData){
+	var jsonLength = 0;
+	for(var item in jsonData){
+		jsonLength++;
+	}
+	return jsonLength;
 }
 
 addEventListener("message", function(event) {
